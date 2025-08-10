@@ -22,7 +22,7 @@ import {getUserToken, removeUserToken, userTokenKey} from "@/constants/api"; // 
 const routes = [
   {
     path: '/',
-    redirect: '/notification'
+    redirect: '/project-intro'
   },
   {
     path: '/login',
