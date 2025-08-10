@@ -72,7 +72,7 @@ Dockerfile
 .dockerignore
 
 # 文档
-README.md
+../README.md
 *.md
 
 # 测试文件
