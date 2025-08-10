@@ -1,0 +1,372 @@
+/**
+ * ECCKeyGenerator 组件样式
+ * 
+ * @description ECC密钥对生成组件的样式文件
+ * @author ECC Team
+ * @version 1.0.0
+ */
+
+/**
+ * 密钥生成区域样式
+ */
+.key-generation-section {
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  border-radius: 16px;
+  padding: 24px;
+  border: 2px solid #e2e8f0;
+}
+
+/**
+ * 区域头部样式
+ */
+.key-section-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.key-section-header h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.section-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  color: #667eea;
+}
+
+.key-section-header p {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+/**
+ * 生成按钮样式
+ */
+.generate-key-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.generate-key-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+}
+
+.generate-key-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.generate-key-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/**
+ * 加载动画
+ */
+.loading-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/**
+ * 密钥显示区域样式
+ */
+.key-display-area {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+/**
+ * 密钥状态样式
+ */
+.key-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: #48bb78;
+  font-weight: 500;
+}
+
+.success-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+/**
+ * 密钥信息样式
+ */
+.key-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.key-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.key-item label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 4px;
+}
+
+/**
+ * 密钥值样式
+ */
+.key-value {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  background: #f7fafc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  word-break: break-all;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.key-value:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+/**
+ * 私钥样式
+ */
+.private-key {
+  position: relative;
+}
+
+.key-value.private {
+  background: #fed7d7;
+  border-color: #feb2b2;
+  color: #c53030;
+}
+
+.key-value.private:hover {
+  background: #fecaca;
+}
+
+/**
+ * 复制按钮样式
+ */
+.copy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #718096;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.copy-btn:hover {
+  color: #4a5568;
+}
+
+.copy-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/**
+ * 私钥切换按钮样式
+ */
+.toggle-private-key {
+  position: absolute;
+  top: 24px;
+  right: 8px;
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.toggle-private-key:hover {
+  background: #c53030;
+}
+
+/**
+ * 密钥元数据样式
+ */
+.key-metadata {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metadata-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.metadata-item label {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.metadata-item span {
+  color: #718096;
+}
+
+/**
+ * 操作按钮样式
+ */
+.key-actions {
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 16px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/**
+ * 导出按钮样式
+ */
+.export-btn {
+  background: #667eea;
+  color: white;
+}
+
+.export-btn:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+/**
+ * 清除按钮样式
+ */
+.clear-btn {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+.clear-btn:hover {
+  background: #cbd5e0;
+  transform: translateY(-1px);
+}
+
+/**
+ * 深色模式支持
+ */
+@media (prefers-color-scheme: dark) {
+  .key-generation-section {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    border-color: #4a5568;
+  }
+  
+  .key-section-header h3 {
+    color: #e2e8f0;
+  }
+  
+  .key-section-header p {
+    color: #cbd5e0;
+  }
+  
+  .key-display-area {
+    background: #1a202c;
+    border-color: #4a5568;
+  }
+  
+  .key-item label {
+    color: #cbd5e0;
+  }
+  
+  .key-value {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .key-value:hover {
+    background: #4a5568;
+  }
+  
+  .metadata-item label {
+    color: #cbd5e0;
+  }
+  
+  .metadata-item span {
+    color: #a0aec0;
+  }
+  
+  .clear-btn {
+    background: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .clear-btn:hover {
+    background: #2d3748;
+  }
+}

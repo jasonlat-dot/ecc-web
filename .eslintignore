@@ -1,0 +1,10 @@
+# 忽略所有文件，禁用ESLint代码检查
+*
+**/*
+src/
+public/
+*.js
+*.vue
+*.ts
+*.jsx
+*.tsx

@@ -1,0 +1,711 @@
+/**
+ * 登录表单组件样式
+ * 
+ * @description 登录表单组件的完整样式定义，包括表单布局、加密进度和响应式设计
+ * @author ECC Team
+ * @version 1.0.0
+ */
+
+/**
+ * 主容器样式
+ */
+.login-form-container {
+  width: 100%;
+  max-width: none;
+  max-height: 85vh;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/**
+ * 美化滚动条样式
+ */
+.login-form-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.login-form-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  margin: 8px 0;
+}
+
+.login-form-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%);
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: all 0.3s ease;
+}
+
+.login-form-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.6) 0%, rgba(118, 75, 162, 0.6) 100%);
+  background-clip: content-box;
+}
+
+/* Firefox滚动条样式 */
+.login-form-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(102, 126, 234, 0.4) rgba(255, 255, 255, 0.1);
+}
+
+.login-form-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  z-index: 1;
+}
+
+/* 滚动阴影效果 */
+.login-form-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.login-form-container.has-scroll::after {
+  opacity: 1;
+}
+
+/**
+ * 表单头部样式
+ */
+.form-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.form-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.form-description {
+  color: #4a5568;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/**
+ * 登录表单
+ */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-section {
+  margin-bottom: 0;
+}
+
+/**
+ * 表单选项样式
+ */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #cbd5e0;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.checkbox-input:checked + .checkbox-custom {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-label {
+  color: #2d3748;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.forgot-link {
+  color: #667eea;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+  color: #5a67d8;
+  text-decoration: underline;
+}
+
+/**
+ * 提交按钮样式
+ */
+.submit-btn {
+  width: 100%;
+  padding: 18px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-btn.loading {
+  pointer-events: none;
+}
+
+.login-icon,
+.loading-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.loading-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/**
+ * 表单底部样式
+ */
+.form-footer {
+  text-align: center;
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.footer-text {
+  color: #4a5568;
+  font-size: 0.9rem;
+  margin-right: 8px;
+}
+
+.register-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.register-link:hover {
+  color: #5a67d8;
+  text-decoration: underline;
+}
+
+/**
+ * 加密进度样式
+ */
+.encryption-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  z-index: 10;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.progress-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.progress-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.progress-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.spinning {
+  animation: spin 1.5s linear infinite;
+}
+
+.progress-text h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+}
+
+.progress-text p {
+  color: #718096;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/**
+ * 进度步骤样式 - 两列布局
+ */
+.progress-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  transition: all 0.3s ease;
+}
+
+.step-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #718096;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.progress-step.active .step-indicator {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transform: scale(1.1);
+}
+
+.progress-step.completed .step-indicator {
+  background: #48bb78;
+  color: white;
+}
+
+.progress-step.completed .step-indicator svg {
+  width: 16px;
+  height: 16px;
+}
+
+.step-text {
+  color: #718096;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.progress-step.active .step-text {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.progress-step.completed .step-text {
+  color: #38a169;
+}
+
+/**
+ * 响应式设计 - 平板端
+ */
+@media (max-width: 768px) {
+  .login-form-container {
+    max-width: 460px;
+    padding: 32px;
+    margin: 12px;
+    border-radius: 16px;
+    max-height: 85vh;
+  }
+  
+  .form-title {
+    font-size: 1.6rem;
+  }
+  
+  .form-description {
+    font-size: 1rem;
+  }
+  
+  .login-form {
+    gap: 24px;
+  }
+  
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .encryption-progress {
+    padding: 24px 16px;
+  }
+  
+  .progress-steps {
+    max-width: 100%;
+    gap: 10px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form-container {
+    max-width: 400px;
+    padding: 24px;
+    margin: 8px;
+    border-radius: 12px;
+    max-height: 80vh;
+  }
+  
+  .form-header {
+    margin-bottom: 28px;
+  }
+  
+  .form-title {
+    font-size: 1.4rem;
+  }
+  
+  .form-description {
+    font-size: 0.95rem;
+  }
+  
+  .login-form {
+    gap: 20px;
+  }
+  
+  /* 移动端回退到单列布局 */
+  .progress-steps {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    max-width: 100%;
+  }
+  
+  .submit-btn {
+    padding: 16px 24px;
+    font-size: 1rem;
+  }
+  
+  .progress-content {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .progress-icon {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .progress-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .progress-text h4 {
+    font-size: 1.125rem;
+  }
+  
+  .progress-steps {
+    gap: 8px;
+  }
+  
+  .step-indicator {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  
+  .step-text {
+    font-size: 0.85rem;
+  }
+}
+
+/**
+ * 深色模式支持
+ */
+@media (prefers-color-scheme: dark) {
+  .login-form-container {
+    background: #1a202c;
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .form-title {
+    color: #e2e8f0;
+  }
+  
+  .form-description {
+    color: #a0aec0;
+  }
+  
+  .checkbox-custom {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .checkbox-label {
+    color: #cbd5e0;
+  }
+  
+  .forgot-link {
+    color: #90cdf4;
+  }
+  
+  .forgot-link:hover {
+    color: #63b3ed;
+  }
+  
+  .form-footer {
+    border-color: #4a5568;
+  }
+  
+  .footer-text {
+    color: #a0aec0;
+  }
+  
+  .register-link {
+    color: #90cdf4;
+  }
+  
+  .register-link:hover {
+    color: #63b3ed;
+  }
+  
+  .encryption-progress {
+    background: rgba(26, 32, 44, 0.98);
+  }
+  
+  .progress-text h4 {
+    color: #e2e8f0;
+  }
+  
+  .progress-text p {
+    color: #a0aec0;
+  }
+  
+  .step-indicator {
+    background: #4a5568;
+    color: #a0aec0;
+  }
+  
+  .step-text {
+    color: #a0aec0;
+  }
+  
+  .progress-step.active .step-text {
+    color: #e2e8f0;
+  }
+}
+
+/**
+ * 动画效果
+ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-form-container {
+  animation: slideUp 0.6s ease-out;
+}
+
+.form-section {
+  animation: fadeIn 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+.form-section:nth-child(1) { animation-delay: 0.1s; }
+.form-section:nth-child(2) { animation-delay: 0.2s; }
+.form-section:nth-child(3) { animation-delay: 0.3s; }
+
+/**
+ * 焦点样式增强
+ */
+.submit-btn:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+.forgot-link:focus-visible,
+.register-link:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/**
+ * 打印样式
+ */
+@media print {
+  .login-form-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .encryption-progress {
+    display: none;
+  }
+  
+  .submit-btn {
+    background: #000 !important;
+  }
+}
+
+/**
+ * 高对比度模式支持
+ */
+@media (prefers-contrast: high) {
+  .login-form-container {
+    border: 2px solid #000;
+  }
+  
+  .submit-btn {
+    border: 2px solid #000;
+  }
+  
+  .checkbox-custom {
+    border-width: 2px;
+  }
+}
+
+/**
+ * 减少动画模式支持
+ */
+@media (prefers-reduced-motion: reduce) {
+  .login-form-container,
+  .form-section,
+  .encryption-progress {
+    animation: none;
+  }
+  
+  .submit-btn:hover:not(:disabled) {
+    transform: none;
+  }
+  
+  .loading-icon,
+  .spinning {
+    animation: none;
+  }
+}

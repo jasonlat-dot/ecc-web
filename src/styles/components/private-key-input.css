@@ -1,0 +1,665 @@
+/**
+ * 私钥输入组件样式
+ * 
+ * @description 私钥输入组件的完整样式定义，包括手动输入和文件上传功能
+ * @author ECC Team
+ * @version 1.0.0
+ */
+
+/**
+ * 主容器样式
+ */
+.private-key-input {
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+/**
+ * 美化滚动条样式
+ */
+.private-key-input::-webkit-scrollbar {
+  width: 6px;
+}
+
+.private-key-input::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.private-key-input::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.private-key-input::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.5);
+}
+
+/* Firefox滚动条样式 */
+.private-key-input {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(102, 126, 234, 0.3) transparent;
+}
+
+.private-key-input:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-color: #cbd5e0;
+}
+
+/**
+ * 输入头部样式
+ */
+.input-header {
+  margin-bottom: 20px;
+}
+
+.input-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+}
+
+.key-icon {
+  width: 20px;
+  height: 20px;
+  color: #667eea;
+}
+
+.input-description {
+  color: #718096;
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/**
+ * 输入方式选择标签页样式
+ */
+.input-method-tabs {
+  display: flex;
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 20px;
+  gap: 4px;
+}
+
+.tab-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #718096;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.tab-button:hover {
+  color: #4a5568;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.tab-button.active {
+  background: white;
+  color: #667eea;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/**
+ * 手动输入区域样式
+ */
+.manual-input-area {
+  margin-bottom: 16px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-label {
+  display: block;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.textarea-container {
+  position: relative;
+}
+
+.private-key-textarea {
+  width: 100%;
+  padding: 12px 50px 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 80px;
+  transition: all 0.3s ease;
+  background: #fafafa;
+}
+
+.private-key-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.private-key-textarea.error {
+  border-color: #e53e3e;
+  background: #fef5f5;
+}
+
+.private-key-textarea::placeholder {
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.textarea-actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 4px;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: #f7fafc;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn:hover {
+  background: #edf2f7;
+  color: #4a5568;
+  transform: translateY(-1px);
+}
+
+.clear-btn:hover {
+  background: #fed7d7;
+  color: #e53e3e;
+}
+
+.paste-btn:hover {
+  background: #bee3f8;
+  color: #3182ce;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/**
+ * 文件上传区域样式
+ */
+.file-upload-area {
+  margin-bottom: 16px;
+}
+
+.upload-zone {
+  border: 2px dashed #cbd5e0;
+  border-radius: 12px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: #fafafa;
+}
+
+.upload-zone:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.upload-zone.dragover {
+  border-color: #667eea;
+  background: #e6f3ff;
+  transform: scale(1.02);
+}
+
+.upload-zone.error {
+  border-color: #e53e3e;
+  background: #fef5f5;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.upload-icon {
+  width: 48px;
+  height: 48px;
+  color: #a0aec0;
+  transition: color 0.3s ease;
+}
+
+.upload-zone:hover .upload-icon {
+  color: #667eea;
+}
+
+.upload-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 0;
+}
+
+.upload-description {
+  color: #718096;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.upload-btn {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+/**
+ * 文件信息样式
+ */
+.file-info {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f0fff4;
+  border: 1px solid #9ae6b4;
+  border-radius: 12px;
+}
+
+.file-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.file-icon {
+  width: 24px;
+  height: 24px;
+  color: #38a169;
+  flex-shrink: 0;
+}
+
+.file-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.file-name {
+  font-weight: 500;
+  color: #2f855a;
+  font-size: 0.9rem;
+}
+
+.file-size {
+  color: #68d391;
+  font-size: 0.8rem;
+}
+
+.remove-file-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: #fed7d7;
+  color: #e53e3e;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-file-btn:hover {
+  background: #feb2b2;
+  transform: translateY(-1px);
+}
+
+/**
+ * 私钥信息显示样式
+ */
+.private-key-info {
+  background: #f0f4ff;
+  border: 1px solid #c3dafe;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.info-icon {
+  width: 20px;
+  height: 20px;
+  color: #667eea;
+}
+
+.info-header h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4c51bf;
+  margin: 0;
+}
+
+.info-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e6f3ff;
+}
+
+.info-item label {
+  font-weight: 500;
+  color: #4a5568;
+  font-size: 0.85rem;
+}
+
+.info-item span {
+  color: #2d3748;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.status-valid {
+  color: #38a169 !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/**
+ * 错误消息样式
+ */
+.error-message {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.error-message::before {
+  content: '⚠';
+  font-size: 0.9rem;
+}
+
+/**
+ * 响应式设计
+ */
+@media (max-width: 768px) {
+  .private-key-input {
+    padding: 16px;
+  }
+  
+  .input-method-tabs {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .tab-button {
+    padding: 12px 16px;
+  }
+  
+  .upload-zone {
+    padding: 20px 16px;
+  }
+  
+  .info-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .private-key-input {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .input-title {
+    font-size: 1rem;
+  }
+  
+  .textarea-actions {
+    position: static;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+  
+  .private-key-textarea {
+    padding: 10px 12px;
+    min-height: 60px;
+  }
+  
+  .upload-zone {
+    padding: 16px 12px;
+  }
+}
+
+/**
+ * 深色模式支持
+ */
+@media (prefers-color-scheme: dark) {
+  .private-key-input {
+    background: #1a202c;
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .input-title {
+    color: #e2e8f0;
+  }
+  
+  .input-description {
+    color: #a0aec0;
+  }
+  
+  .input-method-tabs {
+    background: #2d3748;
+  }
+  
+  .tab-button {
+    color: #a0aec0;
+  }
+  
+  .tab-button:hover {
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .tab-button.active {
+    background: #4a5568;
+    color: #90cdf4;
+  }
+  
+  .input-label {
+    color: #cbd5e0;
+  }
+  
+  .private-key-textarea {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .private-key-textarea:focus {
+    background: #2d3748;
+    border-color: #90cdf4;
+  }
+  
+  .private-key-textarea::placeholder {
+    color: #718096;
+  }
+  
+  .action-btn {
+    background: #4a5568;
+    color: #a0aec0;
+  }
+  
+  .action-btn:hover {
+    background: #2d3748;
+    color: #e2e8f0;
+  }
+  
+  .upload-zone {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .upload-zone:hover {
+    background: #4a5568;
+    border-color: #90cdf4;
+  }
+  
+  .upload-title {
+    color: #e2e8f0;
+  }
+  
+  .upload-description {
+    color: #a0aec0;
+  }
+  
+  .file-info {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .file-name {
+    color: #68d391;
+  }
+  
+  .file-size {
+    color: #9ae6b4;
+  }
+  
+  .private-key-info {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .info-header h4 {
+    color: #90cdf4;
+  }
+  
+  .info-item {
+    background: #4a5568;
+    border-color: #2d3748;
+  }
+  
+  .info-item label {
+    color: #cbd5e0;
+  }
+  
+  .info-item span {
+    color: #e2e8f0;
+  }
+}
+
+/**
+ * 动画效果
+ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.private-key-info,
+.file-info {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/**
+ * 打印样式
+ */
+@media print {
+  .private-key-input {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .upload-zone,
+  .textarea-actions {
+    display: none;
+  }
+}
