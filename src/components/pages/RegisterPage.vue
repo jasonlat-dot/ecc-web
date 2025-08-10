@@ -61,13 +61,15 @@
       v-if="showSuccessModal"
       :visible="showSuccessModal"
       title="注册成功！"
-      message="您的账户已成功创建！"
+      message="您的账户已成功创建！点击确认或等待倒计时结束后将跳转到登录页面。"
       confirm-text="确定"
       :show-encryption-info="true"
       :encryption-items="encryptionItems"
       :close-on-overlay="false"
-      @close="closeSuccessModal"
-      @confirm="closeSuccessModal"
+      :show-countdown="true"
+      :countdown-time="10"
+      @close="handleSuccessModalConfirm"
+      @confirm="handleSuccessModalConfirm"
     />
   </div>
 </template>
@@ -87,6 +89,7 @@ import {useRouter} from 'vue-router'
 
 // 导入工具类
 import ECCCrypto from '@/utils/ecc.js'
+import AESCrypto from '@/utils/aes.js'
 
 // 导入API服务
 import {userApi} from '@/api/user.js'
@@ -124,11 +127,6 @@ const showSuccessModal = ref(false)
  * 加密信息列表
  */
 const encryptionItems = ref([])
-
-/**
- * 验证码倒计时定时器
- */
-const countdownTimer = ref(null)
 
 /**
  * 注册表单组件引用
@@ -186,6 +184,28 @@ const handleGenerateKeyPair = async () => {
     // 设置密钥对到注册表单组件
     if (registerFormRef.value) {
       registerFormRef.value.setKeyPair(formattedKeyPair)
+      
+      // 获取用户输入的密码和邮箱
+      const formData = registerFormRef.value.getFormData()
+      
+      // 如果用户已输入密码和邮箱，则存储私钥
+      if (formData.password && formData.email) {
+        try {
+          const storeResult = await AESCrypto.storePrivateKey(
+            formattedKeyPair.privateKey,
+            formData.password,
+            formData.email
+          )
+          
+          console.log('私钥存储成功:', {
+            storageKey: storeResult.storageKey,
+            timestamp: storeResult.timestamp
+          })
+        } catch (storeError) {
+          console.error('私钥存储失败:', storeError)
+          // 私钥存储失败不影响密钥对生成，只记录错误
+        }
+      }
     }
     
     console.log('ECC密钥对生成成功:', formattedKeyPair)
@@ -357,9 +377,9 @@ const handleSubmit = async (data) => {
 }
 
 /**
- * 关闭成功模态框
+ * 处理成功模态框确认事件
  */
-const closeSuccessModal = () => {
+const handleSuccessModalConfirm = () => {
   showSuccessModal.value = false
   encryptionItems.value = []
   
@@ -368,11 +388,9 @@ const closeSuccessModal = () => {
     registerFormRef.value.resetForm()
   }
   
-  // 清除倒计时
-  if (countdownTimer.value) {
-    clearInterval(countdownTimer.value)
-    countdownTimer.value = null
-  }
+  // 跳转到登录页面
+  console.log('注册成功，跳转到登录页面')
+  router.push('/login')
 }
 
 /**
@@ -383,9 +401,8 @@ const closeSuccessModal = () => {
  * 组件销毁前清理定时器
  */
 onBeforeUnmount(() => {
-  if (countdownTimer.value) {
-    clearInterval(countdownTimer.value)
-  }
+  // 组件销毁时的清理工作
+  console.log('RegisterPage组件即将销毁')
 })
 </script>
 

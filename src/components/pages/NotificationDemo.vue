@@ -302,9 +302,6 @@ onMounted(async () => {
  */
 const checkLoginStatus = async () => {
   try {
-    // 模拟验证过程，让loading显示更久一点
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
     const result = await userApi.validateLoginStatus()
     
     if (!result.success || !result.isLoggedIn) {
@@ -313,7 +310,7 @@ const checkLoginStatus = async () => {
       authLoadingMessage.value = '未检测到有效登录状态，即将跳转到登录页面...'
       
       // 等待一下让用户看到状态变化
-      await new Promise(resolve => setTimeout(resolve, 800))
+      await new Promise(resolve => setTimeout(resolve, 200))
       
       // 显示通知
       showNotification({
@@ -329,7 +326,7 @@ const checkLoginStatus = async () => {
       // 稍微延迟跳转，让loading淡出动画完成
       setTimeout(() => {
         router.push('/login')
-      }, 300)
+      }, 50)
       return
     }
     

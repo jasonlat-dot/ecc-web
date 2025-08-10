@@ -191,9 +191,7 @@ onMounted(async () => {
  */
 const checkLoginStatus = async () => {
   try {
-    // 模拟验证过程，让loading显示更久一点
-    await new Promise(resolve => setTimeout(resolve, 1500)) // 0
-    
+
     const result = await userApi.validateLoginStatus()
     
     if (!result.success || !result.isLoggedIn) {
@@ -202,7 +200,7 @@ const checkLoginStatus = async () => {
       authLoadingMessage.value = '未检测到有效的API测试权限，即将跳转到登录页面...'
       
       // 等待一下让用户看到状态变化
-      await new Promise(resolve => setTimeout(resolve, 800)) // 0
+      await new Promise(resolve => setTimeout(resolve, 200))
       
       // 显示通知
       showNotification({
@@ -218,7 +216,7 @@ const checkLoginStatus = async () => {
       // 稍微延迟跳转，让loading淡出动画完成
       setTimeout(() => {
         router.push('/login')
-      }, 300)
+      }, 100)
       return
     }
     
@@ -227,7 +225,7 @@ const checkLoginStatus = async () => {
     authLoadingMessage.value = 'API测试权限验证成功，正在加载测试界面...'
     
     // 等待一下让用户看到成功状态
-    await new Promise(resolve => setTimeout(resolve, 0))
+    await new Promise(resolve => setTimeout(resolve, 600))
     
     // 隐藏loading
     isAuthLoading.value = false
@@ -238,9 +236,9 @@ const checkLoginStatus = async () => {
         type: 'success',
         title: '权限验证成功',
         message: '欢迎使用API接口测试功能',
-        duration: 3000 // 0
+        duration: 3000
       })
-    }, 200) // 100
+    }, 100) // 100
     
   } catch (error) {
     console.error('登录状态检查失败:', error)

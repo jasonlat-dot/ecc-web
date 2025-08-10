@@ -71,7 +71,7 @@
                   <animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416" repeatCount="indefinite"/>
                 </circle>
               </svg>
-              {{ isProcessing ? processingText : confirmText }}
+              {{ confirmButtonText }}
             </button>
             
             <button 
@@ -99,7 +99,7 @@
  */
 
 // Vue 3 Composition API
-import { defineProps, defineEmits, computed, onMounted, onUnmounted } from 'vue'
+import { defineProps, defineEmits, computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 // 导入样式
 import '../../styles/components/success-modal.css'
@@ -245,6 +245,24 @@ const props = defineProps({
   encryptionData: {
     type: Object,
     default: () => null
+  },
+  
+  /**
+   * 是否显示倒计时
+   * @type {Boolean}
+   */
+  showCountdown: {
+    type: Boolean,
+    default: false
+  },
+  
+  /**
+   * 倒计时时间（秒）
+   * @type {Number}
+   */
+  countdownTime: {
+    type: Number,
+    default: 10
   }
 })
 
@@ -275,6 +293,20 @@ const emit = defineEmits([
 ])
 
 /**
+ * 响应式数据
+ */
+
+/**
+ * 倒计时剩余时间
+ */
+const countdown = ref(0)
+
+/**
+ * 倒计时定时器
+ */
+let countdownTimer = null
+
+/**
  * 计算属性
  */
 
@@ -284,6 +316,19 @@ const emit = defineEmits([
 const isVisible = computed({
   get: () => props.visible,
   set: (value) => emit('update:visible', value)
+})
+
+/**
+ * 确认按钮显示文本
+ */
+const confirmButtonText = computed(() => {
+  if (props.isProcessing) {
+    return props.processingText
+  }
+  if (props.showCountdown && countdown.value > 0) {
+    return `${props.confirmText} (${countdown.value}s)`
+  }
+  return props.confirmText
 })
 
 /**
@@ -364,6 +409,34 @@ const clearAutoCloseTimer = () => {
 }
 
 /**
+ * 启动倒计时
+ */
+const startCountdown = () => {
+  if (props.showCountdown && props.countdownTime > 0) {
+    countdown.value = props.countdownTime
+    countdownTimer = setInterval(() => {
+      countdown.value--
+      if (countdown.value <= 0) {
+        clearCountdown()
+        // 倒计时结束，自动确认
+        handleConfirm()
+      }
+    }, 1000)
+  }
+}
+
+/**
+ * 清除倒计时
+ */
+const clearCountdown = () => {
+  if (countdownTimer) {
+    clearInterval(countdownTimer)
+    countdownTimer = null
+  }
+  countdown.value = 0
+}
+
+/**
  * 生命周期钩子
  */
 
@@ -374,9 +447,10 @@ onMounted(() => {
   // 添加键盘事件监听
   document.addEventListener('keydown', handleKeydown)
   
-  // 如果模态框已显示，启动自动关闭定时器
+  // 如果模态框已显示，启动自动关闭定时器和倒计时
   if (props.visible) {
     startAutoCloseTimer()
+    startCountdown()
   }
 })
 
@@ -389,16 +463,19 @@ onUnmounted(() => {
   
   // 清除定时器
   clearAutoCloseTimer()
+  clearCountdown()
 })
 
 /**
  * 监听visible变化
  */
-computed(() => {
-  if (props.visible) {
+watch(() => props.visible, (newVisible) => {
+  if (newVisible) {
     startAutoCloseTimer()
+    startCountdown()
   } else {
     clearAutoCloseTimer()
+    clearCountdown()
   }
 })
 

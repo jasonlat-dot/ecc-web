@@ -101,12 +101,14 @@
     <SuccessModal
       :visible="showSuccessModal"
       title="登录成功"
-      message="欢迎回来！您已成功登录到您的账户。"
+      message="欢迎回来！您已成功登录到您的账户。点击确认或等待倒计时结束后将进入系统。"
       confirm-text="进入系统"
       :show-encryption-info="true"
       :encryption-data="encryptionData"
+      :show-countdown="true"
+      :countdown-time="5"
       @confirm="handleLoginSuccess"
-      @close="closeSuccessModal"
+      @close="handleLoginSuccess"
       ref="successModalRef"
     />
   </div>
@@ -312,7 +314,8 @@ const handleLoginSuccess = () => {
   console.log('用户确认登录成功，准备跳转')
   
   // 关闭模态框
-  closeSuccessModal()
+  showSuccessModal.value = false
+  encryptionData.value = null
   
   // 检查是否有重定向URL
   const targetUrl = redirectUrl.value || '/notification'

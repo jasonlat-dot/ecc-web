@@ -9,7 +9,7 @@
 
 import { httpClient } from '@/utils/http';
 
-import {encryptHeader, getUserToken, removeUserToken, setUserToken} from '@/constants/api';
+import {encryptHeader, getUserToken, isSuccessCode, removeUserToken, setUserToken} from '@/constants/api';
 
 
 /**
@@ -326,12 +326,24 @@ class UserApiService {
           code: 'TOKEN_NOT_FOUND'
         };
       }
+      const response = await httpClient.post("/auth/verifyToken", {}, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      if (isSuccessCode(response.code) && response.data) {
+        return {
+          success: true,
+          data: {
+            token
+          },
+          message: 'Token有效'
+        };
+      }
       return {
-        success: true,
-        data: {
-          token
-        },
-        message: 'Token有效'
+        success: false,
+        error: 'Token已过期',
+        code: 'TOKEN_VALIDATION_FAILED'
       };
 
     } catch (error) {

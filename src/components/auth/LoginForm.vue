@@ -46,16 +46,6 @@
 
       <!-- 登录选项 -->
       <div class="form-options">
-        <label class="checkbox-container">
-          <input 
-            type="checkbox" 
-            v-model="formData.rememberMe"
-            class="checkbox-input"
-          >
-          <span class="checkbox-custom"></span>
-          <span class="checkbox-label">记住登录状态</span>
-        </label>
-        
         <a href="#" class="forgot-link" @click.prevent="handleForgotPassword">
           忘记密码？
         </a>
@@ -260,8 +250,7 @@ const emit = defineEmits([
 const formData = reactive({
   email: '',
   password: '',
-  privateKey: '',
-  rememberMe: false
+  privateKey: ''
 })
 
 /**
