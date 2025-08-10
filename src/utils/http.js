@@ -93,13 +93,7 @@ httpClient.interceptors.request.use(
         _t: Date.now()
       };
     }
-    
-    if (!config.headers[ignoreAuthToken]) {
-      // 添加认证token（如果存在）
-      const token = getUserToken()
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    
+
     // 添加客户端信息
     config.headers['X-Client-Version'] = process.env.VUE_APP_VERSION || '1.0.0';
     config.headers['X-Client-Platform'] = 'web';
@@ -107,6 +101,15 @@ httpClient.interceptors.request.use(
     // 记录请求信息（包含时间戳和请求ID）
     console.log(`[HTTP Request] ${requestId} - ${timestamp} - ${config.method?.toUpperCase()} ${config.url}`);
 
+    // 是否忽略添加请求头token
+    if (config.headers[ignoreAuthToken] === true) {
+      return config;
+    }
+    // 添加认证token（如果存在）
+    const token = getUserToken()
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
 
     return config;
   },
