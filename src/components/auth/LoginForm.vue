@@ -5,6 +5,9 @@
       <h2 class="form-title">{{ title }}</h2>
       <p class="form-description">{{ description }}</p>
     </div>
+    
+    <!-- 使用自定义滚动条包装表单内容 -->
+    <CustomScrollbar theme="purple" class="form-scroll-wrapper">
 
     <!-- 登录表单 -->
     <form class="login-form" @submit.prevent="handleSubmit">
@@ -109,6 +112,7 @@
         </div>
       </div>
     </div>
+    </CustomScrollbar>
   </div>
 </template>
 
@@ -142,6 +146,7 @@ const Server = new serverService()
 import FormInput from '../form/FormInput.vue'
 import PasswordInput from '../form/PasswordInput.vue'
 import PrivateKeyInput from '../crypto/PrivateKeyInput.vue'
+import CustomScrollbar from '../common/CustomScrollbar.vue'
 import {serverService} from "@/api/server";
 
 /**

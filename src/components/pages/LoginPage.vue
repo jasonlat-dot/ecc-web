@@ -413,14 +413,13 @@ defineExpose({
  * 登录页面PC端布局样式
  */
 #login-page {
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  padding: 15px;
+  overflow: hidden;
 }
 
 /**
@@ -428,11 +427,11 @@ defineExpose({
  */
 .pc-layout-container {
   display: grid;
-  grid-template-columns: 450px 1fr;
-  gap: 60px;
+  grid-template-columns: 380px 1fr;
+  gap: 40px;
   width: 100%;
-  max-width: 1400px;
-  min-height: 80vh;
+  max-width: 1200px;
+  height: 95vh;
   align-items: center;
   z-index: 2;
   position: relative;
@@ -446,8 +445,10 @@ defineExpose({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  padding: 40px 20px;
+  gap: 30px;
+  padding: 30px 15px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .brand-info {
@@ -455,52 +456,54 @@ defineExpose({
 }
 
 .logo-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 24px;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
 }
 
 .logo-icon svg {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   color: white;
 }
 
 .brand-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #ff6b35;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  margin: 0 0 12px 0;
+  margin: 0 0 8px 0;
 }
 
 .brand-subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.95);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .features-list {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  max-height: 50vh;
+  overflow: hidden;
 }
 
 .feature-item {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  padding: 20px;
+  gap: 12px;
+  padding: 16px;
   background: rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
+  border-radius: 12px;
   backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   transition: all 0.3s ease;
@@ -514,10 +517,10 @@ defineExpose({
 }
 
 .feature-icon {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -525,24 +528,24 @@ defineExpose({
 }
 
 .feature-icon svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   color: white;
 }
 
 .feature-content h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: white;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .feature-content p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.4;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -724,30 +727,60 @@ defineExpose({
 }
 
 /**
- * 美化页面滚动条样式
+ * 响应式设计
  */
-#login-page::-webkit-scrollbar {
-  width: 8px;
+@media (max-width: 768px) {
+  .pc-layout-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    height: 98vh;
+    max-width: 100%;
+  }
+  
+  .left-info-section {
+    gap: 20px;
+    padding: 20px 10px;
+  }
+  
+  .brand-title {
+    font-size: 1.8rem;
+  }
+  
+  .brand-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .features-list {
+    gap: 12px;
+    max-height: 40vh;
+  }
+  
+  .feature-item {
+    padding: 12px;
+  }
 }
 
-#login-page::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-#login-page::-webkit-scrollbar-thumb {
-  background: rgba(102, 126, 234, 0.2);
-  border-radius: 10px;
-  transition: background 0.3s ease;
-}
-
-#login-page::-webkit-scrollbar-thumb:hover {
-  background: rgba(102, 126, 234, 0.4);
-}
-
-/* Firefox滚动条样式 */
-#login-page {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(102, 126, 234, 0.2) transparent;
+@media (max-width: 480px) {
+  #login-page {
+    padding: 8px;
+  }
+  
+  .pc-layout-container {
+    height: 99vh;
+  }
+  
+  .left-info-section {
+    gap: 15px;
+    padding: 15px 8px;
+  }
+  
+  .brand-title {
+    font-size: 1.6rem;
+  }
+  
+  .features-list {
+    max-height: 35vh;
+  }
 }
 
 /**

@@ -13,7 +13,7 @@
 export const githubRepositories = {
   // 前端项目仓库
   frontend: {
-    url: 'https://github.com/your-username/ecc-frontend-demo',
+    url: 'https://github.com/jasonlat-dot/ecc-web',
     name: '前端项目仓库',
     description: 'Vue 3 + ECC加密的前端演示项目，采用现代化的组件设计和响应式布局',
     tags: ['Vue 3', 'ECC加密', '响应式']
@@ -21,7 +21,7 @@ export const githubRepositories = {
   
   // 后端服务仓库
   backend: {
-    url: 'https://github.com/your-username/ecc-backend-api',
+    url: 'https://github.com/jasonlat-dot/Ecc-Server-Demo',
     name: '后端服务仓库',
     description: '配套的后端API服务，处理ECC加密数据，提供完整的用户认证和数据管理',
     tags: ['Spring Boot', 'RESTful API', 'MySQL']
@@ -34,13 +34,31 @@ export const githubRepositories = {
     description: 'Java实现的ECC椭圆曲线加密JAR包，提供安全可靠的加密解密功能',
     tags: ['Java', 'ECC', 'secp256k1']
   },
-  
-  // 项目文档仓库
-  docs: {
-    url: 'https://github.com/your-username/ecc-project-docs',
-    name: '项目文档',
-    description: '详细的技术文档和使用说明，包含API文档、部署指南和开发教程',
-    tags: ['API文档', '部署指南', '教程']
+}
+
+export const notFoundGithubRepositories = {
+  // 前端项目仓库
+  frontend: {
+    url: 'https://github.com/jasonlat-dot/ecc-web',
+    name: '前端项目仓库',
+    description: 'Vue 3 + ECC加密的前端演示项目，采用现代化的组件设计和响应式布局',
+    tags: ['Vue 3', 'ECC加密', '响应式']
+  },
+
+  // 后端服务仓库
+  backend: {
+    url: 'https://github.com/jasonlat-dot/Ecc-Server-Demo',
+    name: '后端服务仓库',
+    description: '配套的后端API服务，处理ECC加密数据，提供完整的用户认证和数据管理',
+    tags: ['Spring Boot', 'RESTful API', 'MySQL']
+  },
+
+  // ECC加密库仓库
+  crypto: {
+    url: 'https://github.com/jasonlat-dot/ecc-encrypt-springboot-starter',
+    name: 'ECC加密库',
+    description: 'Java实现的ECC椭圆曲线加密JAR包，提供安全可靠的加密解密功能',
+    tags: ['Java', 'ECC', 'secp256k1']
   }
 }
 
@@ -49,7 +67,7 @@ export const githubRepositories = {
  * @returns {Object} 所有GitHub仓库配置
  */
 export const getAllRepositories = () => {
-  return githubRepositories
+  return notFoundGithubRepositories
 }
 
 /**

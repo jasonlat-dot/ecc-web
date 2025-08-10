@@ -13,6 +13,7 @@ import LoginPage from '../components/pages/LoginPage.vue'
 import RegisterPage from '../components/pages/RegisterPage.vue'
 import NotificationDemo from '../components/pages/NotificationDemo.vue'
 import ApiTestDemo from '../components/pages/ApiTestDemo.vue'
+import NotFoundPage from '../components/pages/NotFoundPage.vue'
 import ProjectIntro from '../App.vue'
 import {getUserToken, removeUserToken, userTokenKey} from "@/constants/api"; // 项目介绍页面
 
@@ -95,15 +96,16 @@ const routes = [
   //     requiresAuth: false
   //   }
   // },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   name: 'NotFound',
-  //   component: () => import('../components/pages/NotFoundPage.vue'),
-  //   meta: {
-  //     title: '页面未找到',
-  //     description: '请求的页面不存在'
-  //   }
-  // }
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFoundPage,
+    meta: {
+      title: '页面未找到 - 404',
+      description: '请求的页面不存在，请检查URL或返回首页',
+      requiresAuth: false
+    }
+  }
 ]
 
 /**
