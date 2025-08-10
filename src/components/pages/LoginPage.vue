@@ -106,7 +106,7 @@
       :show-encryption-info="true"
       :encryption-data="encryptionData"
       :show-countdown="true"
-      :countdown-time="5"
+      :countdown-time="10"
       @confirm="handleLoginSuccess"
       @close="handleLoginSuccess"
       ref="successModalRef"
