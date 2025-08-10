@@ -4,7 +4,14 @@
  */
 
 import axios from 'axios';
-import {isSuccessCode, encryptHeaderKey, encryptRequestData, decryptResponseData} from "@/constants/api";
+import {
+  isSuccessCode,
+  encryptHeaderKey,
+  encryptRequestData,
+  decryptResponseData,
+  getUserToken,
+  removeUserToken, setUserToken, ignoreAuthToken
+} from "@/constants/api";
 
 // 从环境变量获取API基础URL
 const getBaseURL = () => {
@@ -87,9 +94,9 @@ httpClient.interceptors.request.use(
       };
     }
     
-    // 添加认证token（如果存在）
-    const token = localStorage.getItem('authToken');
-    if (token) {
+    if (!config.headers[ignoreAuthToken]) {
+      // 添加认证token（如果存在）
+      const token = getUserToken()
       config.headers.Authorization = `Bearer ${token}`;
     }
     
@@ -185,7 +192,7 @@ httpClient.interceptors.response.use(
         errorMessage = '身份验证失败，请重新登录';
         errorCode = 'UNAUTHORIZED';
         // 清除本地token
-        localStorage.removeItem('authToken');
+        removeUserToken()
         // 可以在这里触发登录页面跳转
         break;
       case 403:
@@ -337,9 +344,9 @@ export const httpUtils = {
    */
   setAuthToken(token) {
     if (token) {
-      localStorage.setItem('authToken', token);
+      setUserToken(token)
     } else {
-      localStorage.removeItem('authToken');
+      removeUserToken()
     }
   },
   
@@ -348,14 +355,14 @@ export const httpUtils = {
    * @returns {string|null}
    */
   getAuthToken() {
-    return localStorage.getItem('authToken');
+    return getUserToken()
   },
   
   /**
    * 清除认证token
    */
   clearAuthToken() {
-    localStorage.removeItem('authToken');
+    removeUserToken()
   },
   
   /**

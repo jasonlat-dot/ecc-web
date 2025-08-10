@@ -6,6 +6,8 @@
  * @version 1.0.0
  */
 
+import {userEmailKey} from "@/constants/api";
+
 /**
  * AES加密解密类
  */
@@ -180,7 +182,7 @@ export class AESCrypto {
       }
       
       // 存储到localStorage
-      localStorage.setItem(`user_email`, email)
+      localStorage.setItem(userEmailKey, email)
       const storageKey = `userPrivateKey_${email}`
       localStorage.setItem(storageKey, JSON.stringify(storageData))
       console.log('私钥已安全存储到本地')
@@ -204,7 +206,7 @@ export class AESCrypto {
   static async retrievePrivateKey() {
     try {
       // 构造存储键
-      const email = localStorage.getItem(`user_email`)
+      const email = localStorage.getItem(userEmailKey)
       if (!email) {
         throw new Error('未找到存储的私钥数据')
       }

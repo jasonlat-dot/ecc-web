@@ -9,7 +9,7 @@
 
 import { httpClient } from '@/utils/http';
 
-import { encryptHeader } from '@/constants/api';
+import {encryptHeader, getUserToken, removeUserToken, setUserToken} from '@/constants/api';
 
 
 /**
@@ -113,7 +113,7 @@ class UserApiService {
       });
       
       // 清除本地存储的认证信息
-      localStorage.removeItem('authToken');
+      removeUserToken()
       localStorage.removeItem('userInfo');
       httpClient.setAuthToken(null);
       
@@ -149,7 +149,7 @@ class UserApiService {
       // 更新认证令牌
       if (response.token) {
         httpClient.setAuthToken(response.token);
-        localStorage.setItem('authToken', response.token);
+        setUserToken(response.token)
       }
       
       return {
@@ -317,7 +317,7 @@ class UserApiService {
   async checkTokenValidity(options = {}) {
     try {
       // 从localStorage获取token
-      const token = localStorage.getItem('authToken');
+      const token = getUserToken()
       console.log("token = ", token)
       if (!token) {
         return {

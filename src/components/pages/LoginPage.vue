@@ -138,6 +138,7 @@ import { userApi } from '@/api/user'
 import BackgroundDecoration from '../layout/BackgroundDecoration.vue'
 import LoginForm from '../auth/LoginForm.vue'
 import SuccessModal from '../modal/SuccessModal.vue'
+import {setUserToken} from "@/constants/api";
 
 /**
  * 响应式数据
@@ -201,8 +202,9 @@ const handleSubmit = async (loginData) => {
       algorithm: 'ECIES + ECDSA',
     }
 
-    localStorage.setItem("authToken", response.data.token)
-    
+    // 保存 token
+    setUserToken(response.data.token)
+
     // 显示成功模态框
     showSuccessModal.value = true
 

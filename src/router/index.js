@@ -13,7 +13,8 @@ import LoginPage from '../components/pages/LoginPage.vue'
 import RegisterPage from '../components/pages/RegisterPage.vue'
 import NotificationDemo from '../components/pages/NotificationDemo.vue'
 import ApiTestDemo from '../components/pages/ApiTestDemo.vue'
-import ProjectIntro from '../App.vue' // 项目介绍页面
+import ProjectIntro from '../App.vue'
+import {getUserToken, removeUserToken, userTokenKey} from "@/constants/api"; // 项目介绍页面
 
 /**
  * 路由配置数组
@@ -141,7 +142,7 @@ router.beforeEach((to, from, next) => {
   
   // 检查是否需要身份验证
   if (to.meta.requiresAuth) {
-    const token = localStorage.getItem('authToken')
+    const token = getUserToken()
     
     if (!token) {
       // 未登录，重定向到登录页面
@@ -235,7 +236,7 @@ export const routerUtils = {
    */
   redirectAfterLogout() {
     // 清除认证信息
-    localStorage.removeItem('authToken')
+    removeUserToken()
     localStorage.removeItem('userInfo')
     
     // 重定向到登录页面

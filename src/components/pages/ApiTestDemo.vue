@@ -152,6 +152,7 @@ import { userApi } from '@/api/user.js'
 import { httpClient } from '@/utils/http.js'
 import { showNotification } from '@/utils/notification.js'
 import AuthLoadingSpinner from '@/components/common/AuthLoadingSpinner.vue'
+import {getUserToken} from "@/constants/api";
 
 // 路由实例
 const router = useRouter()
@@ -275,7 +276,7 @@ const testApi2 = async () => {
   loading.value.test2 = true
   
   try {
-    const token = localStorage.getItem('authToken')
+    const token = getUserToken()
     const response = await httpClient.post('/test/2', {}, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -309,7 +310,7 @@ const testApi3 = async () => {
   loading.value.test3 = true
   
   try {
-    const token = localStorage.getItem('authToken')
+    const token = getUserToken()
     const response = await httpClient.post('/test/3', {}, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -343,7 +344,7 @@ const testApi4 = async () => {
   loading.value.test4 = true
   
   try {
-    const token = localStorage.getItem('authToken')
+    const token = getUserToken()
     
     // 构建请求URL，如果有params参数则添加到查询字符串中
     let requestUrl = '/test/4'

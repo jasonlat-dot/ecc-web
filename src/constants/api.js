@@ -125,7 +125,32 @@ export const encryptHeader = {
   'X-Request-Encrypted': 'true' // 自定义加密请求头，后端可根据此判断是否需要解密
 };
 
+export const ignoreAuthToken = 'ignore-auth-token';
+export const ignoreAuthTokenHeader = {
+  ignoreAuthToken: true
+}
+
 export const userTokenKey = 'authToken'
+
+export const userEmailKey = 'user_email'
+
+export function getUserToken() {
+  const userEmail = localStorage.getItem(userEmailKey)
+  return localStorage.getItem(`${userEmail}_${userTokenKey}`)
+}
+
+export function setUserToken(token) {
+  const userEmail = localStorage.getItem(userEmailKey)
+  return localStorage.setItem(`${userEmail}_${userTokenKey}`, token)
+}
+
+
+export function removeUserToken() {
+  const userEmail = localStorage.getItem(userEmailKey)
+  return localStorage.removeItem(`${userEmail}_${userTokenKey}`)
+}
+
+
 
 // 创建ECC实例
 const ECC = new ECCCrypto()
